@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="res.partner.demo.ept4" id="res_partner_demo_1">
+            <field name="name">Demo 1</field>
+            <field name="email">demo1@gmail.com</field>
+            <field name="street1">motinagar latur</field>
+            <field name="street2">s.m road</field>
+            <field name="city">Latur</field>
+            <field name="state">Maharashtra</field>
+            <field name="zip_code">413512</field>
+            <field name="country">India</field>
+            <field name="age">24</field>
+            <field name="weight">56</field>
+            <field name="description">Demo 1 description</field>
+            <field name="gender">female</field>
+            <field name="is_spactacles">1</field>
+        </record>
+
+        <record model="res.partner.demo.ept4" id="res_partner_demo_2">
+            <field name="name">Demo 2</field>
+            <field name="email">demo2@gmail.com</field>
+            <field name="street1">rahul nagar latur</field>
+            <field name="street2">g.k road</field>
+            <field name="city">Pune</field>
+            <field name="state">Maharashtra</field>
+            <field name="zip_code">142536</field>
+            <field name="country">India</field>
+            <field name="age">24</field>
+            <field name="weight">56</field>
+            <field name="description">Demo 2 description</field>
+            <field name="gender">female</field>
+            <field name="is_spactacles">0</field>
+        </record>
+
+        <record model="res.partner.demo.ept4" id="res_partner_demo_3">
+            <field name="name">Demo 3</field>
+            <field name="email">demo3@gmail.com</field>
+            <field name="street1">kalwad road</field>
+            <field name="street2">s.g road</field>
+            <field name="city">rajkot</field>
+            <field name="state">Gujarat</field>
+            <field name="zip_code">675678</field>
+            <field name="country">India</field>
+            <field name="age">24</field>
+            <field name="weight">56</field>
+            <field name="description">Demo description</field>
+            <field name="gender">male</field>
+            <field name="is_spactacles">1</field>
+        </record>
+
+        <record model="res.partner.demo.ept4" id="res_partner_demo_4">
+            <field name="name">Demo 4</field>
+            <field name="email">demo4@gmail.com</field>
+            <field name="street1">rajivgandhi chouk latur</field>
+            <field name="street2">s.g road</field>
+            <field name="city">Mumbai</field>
+            <field name="state">Maharashtra</field>
+            <field name="zip_code">253614</field>
+            <field name="country">India</field>
+            <field name="age">24</field>
+            <field name="weight">56</field>
+            <field name="description">Demo 4 description</field>
+            <field name="gender">male</field>
+            <field name="is_spactacles">0</field>
+        </record>
+
+        <record model="res.partner.demo.ept4" id="res_partner_demo_5">
+            <field name="name">Demo 5</field>
+            <field name="email">demo5@gmail.com</field>
+            <field name="street1">CST Mumbai</field>
+            <field name="street2">m.g road</field>
+            <field name="city">Mumbai</field>
+            <field name="state">Maharashtra</field>
+            <field name="zip_code">748596</field>
+            <field name="country">India</field>
+            <field name="age">24</field>
+            <field name="weight">56</field>
+            <field name="description">Demo 5 description</field>
+            <field name="gender">male</field>
+            <field name="is_spactacles">0</field>
+        </record>
+
+    </data>
+</odoo>

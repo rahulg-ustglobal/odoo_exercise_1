@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--1)Tree View-->
+    <record id="view_city_tree" model="ir.ui.view">
+        <field name="name">res.city.ept.tree</field>
+        <field name="model">res.city.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="city_name"/>
+                <field name="state_name"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--2)Search View-->
+    <record id="view_city_search" model="ir.ui.view">
+        <field name="name">res.city.ept.search</field>
+        <field name="model">res.city.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="city_name"/>
+                <field name="state_name"/>
+                <separator/>
+                <!--Filter -->
+                <filter string="Active" name="is_active" domain="[('is_active','=',True)]"/>
+                <filter string="Inactive" name="is_active" domain="[('is_active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!--3)Actions-->
+    <record id="res_city_action" model="ir.actions.act_window">
+        <field name="name">Action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.city.demo.ept</field>
+        <field name="view_mode">tree,search</field>
+        <field name="help" type="html">
+            <p>Welcome to the City info tab... :) :) :)</p>
+        </field>
+    </record>
+
+    <!--4)Menues-->
+    <menuitem id="city_root"
+              name="City"
+              sequence="10"
+              web_icon ="res_city_ept,static/description/icon.png"
+    />
+
+    <menuitem id="city_res_root1"
+              name="Localization"
+              parent="city_root"
+              sequence="10"/>
+
+    <menuitem id="city_res_root2"
+              name="Localization"
+              parent="city_res_root1"
+              action="res_city_action"
+              sequence="10"/>
+</odoo>

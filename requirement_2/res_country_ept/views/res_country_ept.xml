@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--1)Tree View-->
+    <record id="view_country_tree" model="ir.ui.view">
+        <field name="name">res.country.ept.tree</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="country_code"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--2)Form View-->
+    <record id="view_country_form" model="ir.ui.view">
+        <field name="name">res.country.ept.form</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="country_code"/>
+                        <field name="is_active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--3)Search View-->
+    <record id="view_country_search" model="ir.ui.view">
+        <field name="name">res.country.ept.search</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="country_code"/>
+                <separator/>
+                <!--Filter -->
+                <filter string="Active" name="is_active" domain="[('is_active','=',True)]"/>
+                <filter string="Inactive" name="is_active" domain="[('is_active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!--3)Actions-->
+    <record id="res_country_action" model="ir.actions.act_window">
+        <field name="name">Action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.country.demo.ept</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p>Welcome to the Country info tab... :) :) :)</p>
+        </field>
+    </record>
+
+    <!--4)Menues-->
+    <menuitem id="country_root"
+              name="Countries"
+              sequence="10"
+              web_icon ="res_country_ept,static/description/icon.png"
+    />
+
+    <menuitem id="country_res_root"
+              name="Localization"
+              parent="country_root"
+              action="res_country_action"
+              sequence="10"/>
+</odoo>

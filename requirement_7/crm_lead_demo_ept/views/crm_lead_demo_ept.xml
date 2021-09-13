@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--1)Tree View-->
+    <record id="crm_ept_tree" model="ir.ui.view">
+        <field name="name">crm.lead.demo.ept.tree</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_name"/>
+                <field name="customer_email"/>
+                <field name="customer_phone"/>
+                <field name="expected_revenue"/>
+                <field name="salesperson"/>
+                <field name="sales_team"/>
+                <field name="channel"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--2)Form View-->
+    <record id="crm_ept_form" model="ir.ui.view">
+        <field name="name">crm.lead.demo.ept.form</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <!--  Status  -->
+                <header>
+                    <button id="button_won" name="action_won" string="Won"
+                            class="btn-primary" type="object"/>
+                    <button id="button_lost" name="action_lost" string="Lost"
+                            class="btn-primary" type="object"/>
+
+                    <field name="state" widget="statusbar" options="{'clickable' : '1'}"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="customer_name"/>
+                            <field name="customer_email"/>
+                            <field name="customer_phone"/>
+                            <field name="expected_revenue"/>
+                            <field name="salesperson"/>
+                            <field name="sales_team"/>
+                        </group>
+                        <group>
+                            <field name="campaign"/>
+                            <field name="channel"/>
+                            <field name="next_follow_up_date"/>
+                            <field name="won_date" attrs="{'invisible': [('state', '!=', 'Won')], 'required': [('state', '=', 'Won')]}"/>
+                            <field name="lost_reason" attrs="{'invisible': [('state', '!=', 'Lost')], 'required': [('state', '=', 'Lost')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--3)Search View-->
+    <record id="crm_ept_search" model="ir.ui.view">
+        <field name="name">crm.lead.demo.ept.search</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="customer_name"/>
+                <field name="customer_email"/>
+                <field name="customer_phone"/>
+                <separator/>
+                <!--Filter -->
+                <filter string="Today" name="next_follow_up_date"
+                        domain="[('next_follow_up_date','=', context_today().strftime('%m-%d-%Y'))]"/>
+
+                <!--Group By -->
+                <group string="Group By">
+                    <filter string="Channel" name="channel" context="{'group_by':'channel'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!--4)Actions-->
+    <record id="crm_ept_action" model="ir.actions.act_window">
+        <field name="name">Action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">crm.lead.demo.ept</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p>Welcome to the CRM tab... :) :) :)</p>
+        </field>
+    </record>
+
+    <!--5)Menues-->
+    <menuitem id="crm_root"
+              name="CRM Data"
+              sequence="10"
+    />
+    <menuitem id="crm_ept_root1"
+              name="Employees"
+              parent="crm_root"
+              sequence="10"/>
+
+    <menuitem id="crm_ept_root2"
+              name="All Employees"
+              parent="crm_ept_root1"
+              action="crm_ept_action"
+              sequence="10"/>
+</odoo>

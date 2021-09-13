@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--1)Tree View-->
+    <record id="customer_partner_tree_view1" model="ir.ui.view">
+        <field name="name">customer.partner.tree1</field>
+        <field name="model">res.partner.demo.ept1</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="street1"/>
+                <field name="street2"/>
+                <field name="city"/>
+                <field name="state"/>
+                <field name="zip_code"/>
+                <field name="country"/>
+                <field name="birthdate"/>
+                <field name="age"/>
+                <field name="weight"/>
+                <field name="gender"/>
+                <field name="is_spactacles"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--2)Form View-->
+    <record id="customer_partner_form_view1" model="ir.ui.view">
+        <field name="name">customer.partner.form1</field>
+        <field name="model">res.partner.demo.ept1</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                        <group>
+                            <field name="photo" string="" widget="image" class="oe_right oe_avatar"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="street1"/>
+                            <field name="street2"/>
+                            <field name="city"/>
+                            <field name="state"/>
+                            <field name="zip_code"/>
+
+                        </group>
+                        <group>
+                            <field name="country"/>
+                            <field name="birthdate"/>
+                            <field name="age"/>
+                            <field name="weight"/>
+                            <field name="gender"/>
+                            <field name="is_spactacles"/>
+                        </group>
+
+                    </group>
+                    <group>
+                        <notebook>
+                            <page name="details" string="Details">
+                                <field name="details"/>
+                            </page>
+                            <page name="description" string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--3)Search View-->
+    <record id="customer_partner_search_view1" model="ir.ui.view">
+        <field name="name">customer.partner.search1</field>
+        <field name="model">res.partner.demo.ept1</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="city"/>
+                <field name="state"/>
+                <field name="country"/>
+                <field name="zip_code"/>
+                <separator/>
+                <!--Filter -->
+                <filter string="Male" name="male" domain="[('gender','=','male')]"/>
+                <filter string="Female" name="female" domain="[('gender','=','female')]"/>
+                <filter string="Transgender" name="others" domain="[('gender','=','others')]"/>
+                <filter string="Is Spactacles" name="is_spactacles" domain="[('is_spactacles','=','is_spactacles')]"/>
+                <!--Group By -->
+                <group string="Group By">
+                    <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+                    <filter string="Country" name="country" context="{'group_by':'country'}"/>
+                    <filter string="State" name="state" context="{'group_by':'state'}"/>
+                    <filter string="City" name="city" context="{'group_by':'city'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+    <!--3)Actions-->
+    <record id="customer_action1" model="ir.actions.act_window">
+        <field name="name">Customer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner.demo.ept1</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Welcome to the customer tab... :) :) :)</p>
+        </field>
+    </record>
+
+    <!--4)Menues-->
+    <menuitem id="customer_root1"
+              name="Contacts 1"
+              sequence="10"
+              web_icon = "res_partner_demo_ept1,static/description/icon.png"
+    />
+
+    <menuitem id="customer_partner_root1"
+              name="Contacts"
+              parent="customer_root1"
+              sequence="10"/>
+
+    <menuitem id="customer_partner_child1"
+              name="Customers"
+              parent="customer_partner_root1"
+              action="customer_action1"
+              sequence="10"/>
+</odoo>

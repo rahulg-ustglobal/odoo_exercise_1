@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--1)Tree View-->
+    <record id="employee_ept_tree" model="ir.ui.view">
+        <field name="name">employee.demo.ept.tree</field>
+        <field name="model">employee.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="emp_name"/>
+                <field name="dept_name"/>
+                <field name="job_position"/>
+                <field name="salary"/>
+                <field name="hire_date"/>
+                <field name="gender"/>
+                <field name="job_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--2)Form View-->
+    <record id="employee_ept_form" model="ir.ui.view">
+        <field name="name">employee.demo.ept.form</field>
+        <field name="model">employee.demo.ept</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="emp_name"/>
+                            <field name="dept_name"/>
+                            <field name="job_position"/>
+                            <field name="salary"/>
+                        </group>
+                        <group>
+                            <field name="hire_date"/>
+                            <field name="gender"/>
+                            <field name="job_type"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--3)Search View-->
+    <record id="employee_ept_search" model="ir.ui.view">
+        <field name="name">employee.demo.ept.search</field>
+        <field name="model">employee.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="emp_name"/>
+                <field name="job_position"/>
+                <field name="dept_name"/>
+                <separator/>
+                <!--Filter -->
+                <filter string="Permanent" name="job_type"
+                        domain="[('job_type','=','permanent')]"/>
+                <filter string="Ad Hoc" name="job_type"
+                        domain="[('job_type','=','ad_hoc')]"/>
+                <filter string="Male" name="male" domain="[('gender','=','male')]"/>
+                <filter string="Female" name="female" domain="[('gender','=','female')]"/>
+                <filter string="Transgender" name="transgender" domain="[('gender','=','transgender')]"/>
+
+                <!--Group By -->
+                <group string="Group By">
+                    <filter string="Job Position" name="job_position" context="{'group_by':'job_position'}"/>
+                    <filter string="Department Name" name="dept_name" context="{'group_by':'dept_name'}"/>
+                    <filter string="Job Type" name="job_type" context="{'group_by':'job_type'}"/>
+                    <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!--4)Actions-->
+    <record id="employee_ept_action" model="ir.actions.act_window">
+        <field name="name">Action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.demo.ept</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p>Welcome to the Employee info tab... :) :) :)</p>
+        </field>
+    </record>
+
+    <!--5)Menues-->
+    <menuitem id="employee_root"
+              name="Employee"
+              sequence="10"
+    />
+    <menuitem id="employee_ept_root1"
+              name="Employees"
+              parent="employee_root"
+              sequence="10"/>
+
+    <menuitem id="employee_ept_root2"
+              name="All Employees"
+              parent="employee_ept_root1"
+              action="employee_ept_action"
+              sequence="10"/>
+</odoo>
